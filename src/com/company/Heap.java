@@ -29,8 +29,27 @@ public class Heap {
     }
 
     void buildHeap(){
-        for(int i=heap.size()/2; i>=0;i--){
-            heapifyDown(heap, heap.size()-1, i);
+        for(int i=heap.size()-1; i>=0;i--){
+            // If node is a leaf node, continue
+            // if parent, heapify that branch
+            if(i*2+1>heap.size()-1)
+                continue;
+
+            heapifyDown(heap, heapSize, i);
+/*
+            int leftIndex = i*2+1;
+            int rightIndex = i*2+2;
+            int smallestIndex = i;
+            if(leftIndex<heap.size() && heap.get(leftIndex)<heap.get(smallestIndex))
+                smallestIndex = leftIndex;
+            if(rightIndex<heap.size() && heap.get(rightIndex)<heap.get(smallestIndex))
+                smallestIndex = rightIndex;
+            if(i!=smallestIndex){
+                int temp = heap.get(i);
+                heap.set(i, heap.get(smallestIndex));
+                heap.set(smallestIndex, temp);
+            }
+*/
         }
     }
 

@@ -1,22 +1,42 @@
 package recursion;
 
+import org.junit.jupiter.api.Test;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class ExpressionsTarget {
-    static String[] generate_all_expressions(String s, long target, int lastIndex) {
-        int num = Integer.parseInt(s);
-        return generateExpressions(num, target, new ArrayList<String>());
+    public static List<String> addOperators(String num, int target) {
+        List<String> rst = new ArrayList<String>();
+        if(num == null || num.length() == 0) return rst;
+        helper(rst, "", num, target, 0, 0, 0);
+        return rst;
+    }
+    public static void helper(List<String> rst, String path, String num, int target, int pos, long eval, long multed){
+        if(pos == num.length()){
+            if(target == eval)
+                rst.add(path);
+            return;
+        }
+        for(int i = pos; i < num.length(); i++){
+            if(i != pos && num.charAt(pos) == '0') break;
+            long cur = Long.parseLong(num.substring(pos, i + 1));
+            if(pos == 0){
+                helper(rst, path + cur, num, target, i + 1, cur, cur);
+            }
+            else{
+                helper(rst, path + "+" + cur, num, target, i + 1, eval + cur , cur);
+
+                helper(rst, path + "-" + cur, num, target, i + 1, eval -cur, -cur);
+
+                helper(rst, path + "*" + cur, num, target, i + 1, eval - multed + multed * cur, multed * cur );
+            }
+        }
     }
 
-    static String[] generateExpressions(int num, long target, List<String> results){
-        if(num>target)
-            return new String[0];
+    @Test
+    public void testExp(){
+        System.out.println(ExpressionsTarget.addOperators("2222",10));
 
-        int firstNum = num%10;
-        int restNum = num/10;
-
-        //int sum = generateExpressions()
-        return null;
     }
 }

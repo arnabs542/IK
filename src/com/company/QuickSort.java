@@ -30,9 +30,12 @@ public class QuickSort {
         return left;
     }
 
+
+
     public static void main(String[] args) {
         //int[] arr = {1,19,2,77,32,1,3,8,8};
-        int[] arr = {10,9,8,7,6,5,4,3,2,1};
+        //int[] arr = {10,9,8,7,6,5,4,3,2,1};
+        int[] arr = {1, 0, 2, -1, -13};
         quickSort(arr, 0, arr.length-1);
         System.out.println(Arrays.toString(arr));
     }

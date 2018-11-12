@@ -1,9 +1,10 @@
 package dp;
-import java.io.*;
-import java.math.*;
-import java.text.*;
-import java.util.*;
-import java.util.regex.*;
+
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.util.List;
+import java.util.Scanner;
 
     public class RopeCUt {
         /*
@@ -28,6 +29,18 @@ import java.util.regex.*;
 
             return dp[n];
 
+        }
+
+        static long maxProductFromCut(List<Integer> prices, int n){
+            long maxSum = Integer.MIN_VALUE;
+            if(n==0)
+                return 0;
+            long result = prices.get(n);
+            for(int i=1; i < n; i++){
+                result = Math.max(result, prices.get(i)+maxProductFromCut(prices, n-i));
+            }
+
+            return result;
         }
 
         private static final Scanner scanner = new Scanner(System.in);
