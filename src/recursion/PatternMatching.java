@@ -49,10 +49,10 @@ public class PatternMatching {
 
     if(p.charAt(j)=='*'){
       if(p.charAt(j-1)=='.')
-        return matches(s, p, i+1, j);
+        return matches(s, p, i+1, j) || matches(s, p, i+1, j+1);
       else{
         if(s.charAt(i)==p.charAt(j-1))
-          return matches(s,p, i+1, j);
+          return matches(s,p, i+1, j) || matches(s, p, i+1, j+1);
         return matches(s,p, i, j+1);
       }
     }

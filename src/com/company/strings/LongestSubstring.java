@@ -51,8 +51,8 @@ public class LongestSubstring {
 
   @Test
   public void testLongestSubstring(){
-    String input = " ";
+    String input = "abcabcbb";
     int result = lengthOfLongestSubstring(input);
-    assertEquals(1, result);
+    assertEquals(3, result);
   }
 }

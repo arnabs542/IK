@@ -23,24 +23,16 @@ public class DiskWriteMinimization {
         return x - '0' >= 0 && x - '0' <= 9;
     }
 
-    public static char read(char[] a, int pos) {
-        return a[pos];
-    }
-
-    public static void write(char[] a, int pos, char val) {
-        a[pos] = val;
-    }
-
     public static int transform(char[] a) {
         int readPointer = 0;
         int writePointer = 0;
         int operations = 0;
         for (; readPointer < a.length; readPointer++) {
-            char c = read(a, readPointer);
+            char c = a[readPointer];
             if (!isDigit(c)) {
-                char cw = read(a, writePointer);
+                char cw = a[writePointer];
                 if (c != cw) {
-                    write(a, writePointer, c);
+                    a[writePointer] = c;
                     operations++;
                 }
                 writePointer++;
