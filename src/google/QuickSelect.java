@@ -1,4 +1,8 @@
-package com.company;
+package google;
+
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class QuickSelect {
     static int getRank(int[] arr, int k, int start, int end){
@@ -8,9 +12,10 @@ public class QuickSelect {
         else     return getRank(arr, k, pi+1, end);
     }
 
-    public static void main(String[] args) {
-        int[] arr = {10,2,3,4,19,33};
-        System.out.println(getRank(arr, 3, 0, arr.length-1));
+    @Test
+    public void test() {
+        int[] arr = {3,2,3,1,2,4,5,5,6};
+        assertEquals(4, getRank(arr, 6, 0, arr.length-1));
     }
 
     static int partition(int arr[], int start, int end){
