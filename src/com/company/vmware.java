@@ -1,8 +1,10 @@
-import java.io.*;
-import java.util.*;
-import java.text.*;
-import java.math.*;
-import java.util.regex.*;
+package com.company;
+
+import java.io.BufferedWriter;
+import java.io.OutputStreamWriter;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 public class vmware {
   public static final String SUCCESS = "SUCCESS => RECEIVED: ";

@@ -1,9 +1,9 @@
 package com.company.strings;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.Test;
 
 public class StringsGeneral {
     static String reverse(String str){
@@ -67,23 +67,20 @@ public class StringsGeneral {
     }
 
     static boolean isSubstring(String word, String prefix){
-        int i=0, j=0;
         int m = word.length();
         int n = prefix.length();
-        while(i < m-n+1) {
+        for(int i=0; i< m-n+1; i++) {
             boolean found = true;
-            j=0;
-            while (j < n) {
+            int start = i;
+            for (int j=0; j < n; j++, i++) {
                 if (word.charAt(i) != prefix.charAt(j)) {
                     found = false;
+                    i = start;
                     break;
                 }
-                i++;j++;
             }
             if(found)
                 return found;
-
-            i++;
         }
         return false;
     }
@@ -99,11 +96,11 @@ public class StringsGeneral {
 
     @Test
     public void testSubstring(){
-        assertTrue(isSubstring("Atul", "tu"));
-        assertTrue(isSubstring("Atul", "Atu"));
-        assertTrue(isSubstring("Atul", "tul"));
-        assertTrue(isSubstring("Atul", "Atul"));
-        assertFalse(isSubstring("Atul", "Aul"));
+//        assertTrue(isSubstring("Atul", "tu"));
+//        assertTrue(isSubstring("Atul", "Atu"));
+//        assertTrue(isSubstring("Atul", "tul"));
+        assertTrue(isSubstring("Mississippi", "ssippi"));
+//        assertFalse(isSubstring("Atul", "Aul"));
     }
 
 

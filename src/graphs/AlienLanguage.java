@@ -1,11 +1,166 @@
 package graphs;
 
-import org.junit.jupiter.api.Test;
-
-import java.util.*;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.junit.jupiter.api.Test;
+/*
+Find Order Of Characters From Alien Dictionary
+
+
+
+Problem Statement:
+
+
+
+Given a sorted dictionary of an alien language, you have to find the order of characters in that language.
+
+
+
+(This is a popular interview problem.)
+
+
+
+Generally, dictionary does not contain duplicate values, but for the sake of this problem, assume that dictionary might have duplicate values. (Sometimes interviewer tricks the question, to see, how you will handle it.)
+
+
+
+Input/Output Format For The Function:
+
+
+
+Input Format:
+
+
+
+There is only one argument, array of strings words, which denotes sorted dictionary of an alien language.
+
+
+
+Output Format:
+
+
+
+Return a string ordered, denoting order of characters in the alien language.
+
+
+
+Length of the output string will be the number of different characters present in input dictionary.
+
+
+
+For more clarity see the sample test cases.
+
+
+
+Input/Output Format For The Custom Input:
+
+
+
+Input Format:
+
+
+
+The first line of input should contain an integer n, denoting size of input array words. In next n lines, ith line should contain a string words[i], denoting a value at index i of words.
+
+
+
+If n = 5 and words = ["baa", "abcd", "abca", "cab", "cad"], then input should be:
+
+
+
+5
+
+baa
+
+abcd
+
+abca
+
+cab
+
+cad
+
+
+
+Output Format:
+
+
+
+There will be only one line of output, containing a string ordered, denoting the result returned by solution function.
+
+
+
+For input n = 5 and words = ["baa", "abcd", "abca", "cab", "cad"], output will be:
+
+
+
+bdac
+
+
+
+Constraints:
+
+1 <= total number of characters in dictionary (not words) <= 10^5
+Character in any word will be lower case alphabet letter.
+Input will be such that it is possible to determine the order uniquely.
+
+
+Sample Test Cases:
+
+
+
+Sample Test Case 1:
+
+
+
+Sample Input 1:
+
+
+
+words = ["baa", "abcd", "abca", "cab", "cad"]
+
+
+
+Sample Output 1:
+
+
+
+"bdac"
+
+
+
+Sample Test Case 2:
+
+
+
+Sample Input 2:
+
+
+
+words = ["caa", "aaa", "aab"]
+
+
+
+Sample Output 2:
+
+
+
+"cab"
+
+
+
+Notes:
+
+Maximum time allowed in interview: 20 Minutes.
+
+
+
+Here input is given such that it is possible to determine order uniquely. But in interview you should clarify these things with interviewer. Like if we are given words = ["z" "bc"] then we can only conclude that 'z' will come before 'b', but nothing about the order of 'c'!
+ */
 public class AlienLanguage {
     static String find_order(String[] words) {
         // Create a set of all vertexes

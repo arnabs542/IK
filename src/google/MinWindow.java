@@ -1,11 +1,11 @@
 package google;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
 
 /**
  * Given a string S and a string T, find the minimum window in S which will contain all the characters in T in complexity O(n).
@@ -27,7 +27,12 @@ public class MinWindow {
       map[c]++;
 
     while(end<s.length()){
-      if(map[s.charAt(end++)]-- > 0) counter--;
+      System.out.println("Array :"+Arrays.toString(map));
+      if(map[s.charAt(end)]-- > 0){
+        counter--;
+      }
+      end++;
+
       while(counter==0){
         if(end-begin < d) {
           d = end - begin;

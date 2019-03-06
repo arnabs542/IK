@@ -36,7 +36,7 @@ public class ExpressionsTarget {
 
     @Test
     public void testExp(){
-        System.out.println(ExpressionsTarget.addOperators("2222",10));
+        System.out.println(ExpressionsTarget.addOperators("2225",13));
 
     }
 }
