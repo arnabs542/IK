@@ -20,7 +20,7 @@ import org.junit.jupiter.api.Test;
  * If there is such window, you are guaranteed that there will always be only one unique minimum window in S.
  */
 public class MinWindow {
-  public static String minWindow(String s, String t){
+  public static String minWindowBack(String s, String t){
     int begin=0, end=0, d=Integer.MAX_VALUE, counter=t.length(), head = 0;
     int[] map = new int[128];
     for(Character c : t.toCharArray())
@@ -45,6 +45,31 @@ public class MinWindow {
     return d == Integer.MAX_VALUE ? "" : s.substring(head, head+d);
   }
 
+  static String minWindow(String strText, String strChars) {
+    int count = Integer.MAX_VALUE;
+    int i=0, head = 0;
+    int[] map = new int[256];
+    int k = strChars.length();
+    for(char c : strChars.toCharArray())
+      map[c] ++;
+    for(int j=0; j<strText.length(); ){
+      if(map[strText.charAt(j++)]-- > 0)
+        k--;
+      while(k==0){
+        if(j-i<count){
+          count = j-i;
+          head = i;
+        }
+        if(map[strText.charAt(i++)]++ == 0)
+          k++;
+
+      }
+    }
+
+    return count==Integer.MAX_VALUE ? "":strText.substring(head, head+count);
+
+  }
+  
   public static String minWindow1(String s, String t) {
     int left = 0, right = 0;
     int length = s.length();

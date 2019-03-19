@@ -1,11 +1,10 @@
 package google;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.Queue;
 import java.util.concurrent.LinkedBlockingDeque;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
 
 public class MaxConsecutives2 {
   public int findMaxConsecutiveOne(int[] nums) {
@@ -103,10 +102,23 @@ public class MaxConsecutives2 {
     return max;
   }
 
+  public int findMaxConsecutiveOnes(int[] nums, int k){
+    int i=0, j=0;
+    while(j<nums.length){
+      if(nums[j++]==0)
+        k-- ;
+      if(k<0 && nums[i++]==0){
+        k++;
+      }
+    }
+    return j-i;
+  }
+
   @Test
   public void test(){
     int[] nums = {1,1,1,0,1,1,0,0,1,1,1,1};
-    int expected = 6;
-    assertEquals(expected, findMaxConsecutiveOnes(nums));
+    int expected = 12;
+    int k = 3;
+    assertEquals(expected, findMaxConsecutiveOnes(nums, k));
   }
 }

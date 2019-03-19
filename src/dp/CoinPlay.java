@@ -1,9 +1,124 @@
 package dp;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.junit.jupiter.api.Test;
+
+/*
+Word Break
+
+
+
+Problem Statement:
+
+
+
+You are given a dictionary set dictionary that contains dictionaryCount distinct words and another string txt. Your task is to segment the txt string in such a way that all the segments occur in a continuous manner in the original txt string and all these segments (or words) exists in our dictionary set dictionary.
+
+
+
+In short you have to split the string txt using ‘ ‘(single white space delimiter) in such a way that every segment(or word exists in our dictionary.
+
+
+
+Same word from the dictionary can be used multiple times when splitting the given string.
+
+
+
+Example: Suppose our Dictionary is {“to”, “do”, “todo”}
+
+and txt is “totodo” then it can also be segmented as
+
+“to to do”. Here the word “to” from the dictionary is being used twice.
+
+
+
+Input Format:
+
+
+
+First parameter of the function that is to be implemented is an integer dictionaryCount denoting, the number of words in our dictionary. Second parameter is a vector(array) of strings dictionary, denoting the list of words in our dictionary and the last parameter is a string txt, denoting the text string that is to be segmented.
+
+
+
+Output Format:
+
+
+
+Return array of strings containing all different possible segmentation arrangements for the txt string.
+
+
+
+Constraints:
+
+
+
+1 <= dictionaryCount <= 500
+
+1 <= |txt| <= 19
+
+1<= lengths of words in dictionary <= 19
+
+All the characters in txt and words in dictionary are lower case English alphabets.
+
+
+
+Sample Test Case:
+
+
+
+7
+
+kick
+
+start
+
+kickstart
+
+is
+
+awe
+
+some
+
+awesome
+
+kickstartisawesome
+
+
+
+Sample Output:
+
+
+
+kick start is awe some
+
+kick start is awesome
+
+kickstart is awe some
+
+kickstart is awesome
+
+
+
+Explanation:
+
+
+
+There are only 4 possible segmentations possible for the given txt. All of which are mentioned above.
+
+
+
+Consider first segmented string: “kick start is awe some”
+
+Here all the words: kick, start, is, awe and some exists in our dictionary and these words are continuous substrings of the txt string “kickstartisawesome”.
+
+
+
+Similarly, other three segmentations satisfy the same conditions and hence are valid segmentations of the given string
+
+
+ */
 /**
  *     F(i, j)  = Max(Vi + min(F(i+2, j), F(i+1, j-1) ),
  *                    Vj + min(F(i+1, j-1), F(i, j-2) ))

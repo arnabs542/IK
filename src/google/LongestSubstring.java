@@ -22,6 +22,20 @@ public class LongestSubstring {
     return res;
   }
 
+  public int lengthOfLongestSubstringKDistinctBest(String s, int k) {
+    int[] nums = new int[256];
+    int i=0, j=0;
+    for(;j<s.length();){
+      if(nums[s.charAt(j++)]++ == 0)
+        k--;
+      if(k<0){
+        if(--nums[s.charAt(i++)] == 0)
+          k++;
+      }
+    }
+    return j-i;
+  }
+
   public int lengthOfLongestSubstringKDistinctMine(String s, int k) {
     int l = 0, r = 0;
     int max = 0;
@@ -62,6 +76,6 @@ public class LongestSubstring {
   public void test(){
     String input = "aaaabcddddd";
     int expected = 6;
-    assertEquals(expected, lengthOfLongestSubstringKDistinct(input, 2));
+    assertEquals(expected, lengthOfLongestSubstringKDistinctBest(input, 2));
   }
 }

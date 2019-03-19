@@ -1,8 +1,8 @@
 package google;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+
+import org.junit.jupiter.api.Test;
 
 public class GameOfLife {
   public void gameOfLife(int[][] board) {
@@ -12,17 +12,17 @@ public class GameOfLife {
         int cell = board[i][j];
         int liveCells = getNumLiveCells(board, i, j);
         if(cell==1 && !(liveCells<2 || liveCells>3)) {
-          board[i][j] = (board[i][j] & 1) | 2;
+          board[i][j] = board[i][j] | 2;
 
         }
         if(cell==0 && liveCells==3)
-          board[i][j] = (board[i][j] & 1) | 2;
+          board[i][j] = board[i][j] | 2;
       }
     }
 
     for(int i=0;i<board.length;i++){
       for(int j=0;j<board[i].length; j++){
-        board[i][j] = (board[i][j] & 2) >> 1 ;
+        board[i][j] = board[i][j] >> 1 ;
       }
     }
   }
