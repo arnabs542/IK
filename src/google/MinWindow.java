@@ -5,7 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-import org.junit.jupiter.api.Test;
+import java.util.stream.Stream;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 /**
  * Given a string S and a string T, find the minimum window in S which will contain all the characters in T in complexity O(n).
@@ -69,7 +72,7 @@ public class MinWindow {
     return count==Integer.MAX_VALUE ? "":strText.substring(head, head+count);
 
   }
-  
+
   public static String minWindow1(String s, String t) {
     int left = 0, right = 0;
     int length = s.length();
@@ -127,9 +130,17 @@ public class MinWindow {
     return true;
   }
 
-  @Test
-  public void test(){
-    String expected = "BANC";
-    assertEquals(expected, minWindow("ADOBECODEBANC","ABC"));
+  @ParameterizedTest
+  @MethodSource("getArgs")
+  public void test(String input1, String input2, String expected){
+    assertEquals(expected, minWindow(input1, input2));
   }
+
+  public static Stream<Arguments> getArgs(){
+    return Stream.of(
+        Arguments.of("ADOBECODEBANC", "ABC", "BANC"),
+        Arguments.of("ABRACADABRA","BRC","BRAC")
+    );
+  }
+
 }
