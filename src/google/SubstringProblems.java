@@ -50,7 +50,8 @@ package google;
     *}
     *return d;
     *}
-    *One thing needs to be mentioned is that when asked to find maximum substring,we should update maximum after the inner while loop to guarantee that the substring is valid.On the other hand,when asked to find minimum substring,we should update minimum inside the inner while loop.
+    *One thing needs to be mentioned is that when asked to find maximum substring,we should update maximum after the inner while loop to guarantee that the substring is valid.
+    * On the other hand,when asked to find minimum substring,we should update minimum inside the inner while loop.
     *
     *The code of solving Longest Substring with At Most Two Distinct Characters is below:
     *

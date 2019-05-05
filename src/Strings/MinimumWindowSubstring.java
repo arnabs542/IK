@@ -37,5 +37,4 @@ Till we finish developing this problem, you can look at:
 https://leetcode.com/problems/minimum-window-substring/description/
  */
 public class MinimumWindowSubstring {
-
 }

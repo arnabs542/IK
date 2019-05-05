@@ -3,14 +3,17 @@ package recursion;
 public class Permutation {
     public static void main(String[] args) {
         Permutation perm = new Permutation();
-        perm.permuteMain(new char[]{'a','b','c','d'});
+        String input = "abcd";
+        perm.permuteMain(input.toCharArray());
     }
     void permuteMain(char[] arr){
         permute(arr, 0);
+        System.out.println(total);
     }
-
+    int total = 0;
     void permute(char[] arr, int i){
         if(i==arr.length-1) {
+            total++;
             System.out.println(arr);
             return;
         }

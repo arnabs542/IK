@@ -1,4 +1,12 @@
 package Strings;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.util.stream.Stream;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+
 /*
 Regex Matcher
 
@@ -177,5 +185,79 @@ If we take 'b*' as "" then also, length of the pattern will be 4 (".a.."). But, 
 
  */
 public class RegexMatcher {
+  public boolean isMatch(String s, String p) {
+    return isMatch(s.toCharArray(), p.toCharArray(), 0, 0, new Boolean[s.length()+1][p.length()+1]);
+  }
+
+  public boolean isMatch(char[] s, char[] p, int i, int j){
+    if(j==p.length)
+      return i==s.length;
+
+    boolean firstMatch = false;
+    if(i<s.length && (s[i]==p[j] || p[j]=='.'))
+      firstMatch = true;
+
+    if(j+1<p.length && p[j+1]=='*'){
+      return (firstMatch && isMatch(s, p, i+1, j)) || isMatch(s, p, i, j+2);
+    }else
+      return firstMatch && isMatch(s, p, i+1, j+1);
+  }
+
+  public boolean isMatch(char[] s, char[] p, int i, int j, Boolean[][] memo){
+    if(memo[i][j]!=null)
+      return memo[i][j];
+
+    if(j==p.length)
+      return i==s.length;
+
+    boolean firstMatch = false;
+    boolean result = false;
+    if(i<s.length && (s[i]==p[j] || p[j]=='.'))
+      firstMatch = true;
+
+    if(j+1<p.length && p[j+1]=='*'){
+      memo[i][j] = (firstMatch && isMatch(s, p, i+1, j, memo)) || isMatch(s, p, i, j+2, memo);
+    }else
+      memo[i][j] = firstMatch && isMatch(s, p, i+1, j+1, memo);
+
+    return memo[i][j];
+  }
+
+  public boolean isMatchdp(char[] s, char[] p){
+    boolean[][] memo = new boolean[s.length+1][p.length+1];
+    memo[s.length][p.length] = true;
+
+    for(int i=s.length; i>=0; i--){
+      for(int j=p.length-1; j>=0; j--){
+        boolean firstMatch = false;
+        if(i<s.length && (s[i]==p[j] || p[j]=='.'))
+          firstMatch = true;
+
+        if(j+1<p.length && p[j+1]=='*'){
+          memo[i][j] = (firstMatch && memo[i+1][j]) || memo[i][j+2];
+        }else
+          memo[i][j] = firstMatch && memo[i+1][j+1];
+      }
+    }
+
+
+    return memo[0][0];
+  }
+
+  @ParameterizedTest
+  @MethodSource("getArgs")
+  public void test(String s, String p, boolean expected){
+    assertEquals(expected, isMatchdp(s.toCharArray(), p.toCharArray()));
+  }
+
+  public static Stream<Arguments> getArgs(){
+    return Stream.of(
+        Arguments.of("aa","a*", true),
+        Arguments.of("aa",".*", true),
+        Arguments.of("","a*", true),
+        Arguments.of("","c*c*", true),
+        Arguments.of("aaaa","aaa", false)
+    );
+  }
 
 }
